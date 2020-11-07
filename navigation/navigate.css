@@ -1,0 +1,89 @@
+.navigations {
+    margin: auto;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0px 0px 10px rgba(116, 116, 116, 0.5);
+    background: rgba(248, 248, 248, 0.774);
+  }
+  .navigations nav {
+    padding: 20px 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .nav-list {
+    display: flex;
+    justify-content:flex-start;
+    margin-top: 5px;
+  }
+  .nav-list li{
+    margin: 0px 20px;
+  }
+  .nav-list li a {
+    color: #6e6e6e;
+    font-size: 15px;
+    transition: 0.3s ease;
+  }
+  .nav-list li a:hover {
+    opacity: 0.7;
+  }
+  .social-media {
+    display: flex;
+  }
+  .login-user {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+  }
+  .login-user li {
+    padding: 0 10px;
+    font-size: 14px;
+    color: #6e6e6e;
+  }
+  .login-user li:nth-child(3) {
+    color: rgb(182, 194, 18);
+  }
+  .login-user button {
+    outline: none;
+    background: none;
+    border: none;
+    color: rgb(104, 104, 104);
+    font-size: 20px;
+    margin-left: 10px;
+    margin-top: 2px;
+    cursor: pointer;
+  }
+  .social-media li {
+    margin: 0px 10px;
+  }
+  .social-media li form {
+    position: relative;
+  }
+  .social-media li:last-child {
+    font-size: 14px;
+    margin-top: 7px;
+    color: #b5b4b4;
+  }
+  .auth {
+    position: absolute;
+    left: 70%;
+    top: 45px;
+    z-index: 2;
+  }
+  .auth a {
+    font-size: 12px;
+    color: rgb(167, 163, 163);
+  }
+  .social-media form input {
+    border: 1px solid rgb(131, 131, 131);
+    padding: 5px;
+    outline: none;
+  }
+  .social-media form input::placeholder {
+    color: #ccc;
+  }
+  .social-media form input:last-child {
+    border-radius: 5px;
+    background: none;
+    padding: 4px 15px;
+    color: rgb(145, 143, 143);
+  }
