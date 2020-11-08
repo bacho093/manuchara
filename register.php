@@ -1,19 +1,22 @@
 <?php
 session_start();
-  include_once "includes/autoloader.inc.php";
+include_once "database/dbh.php";
+include "languages/config.php";
 
+if(isset($_SESSION['user']) || isset($_SESSION['email'])) 
+{
+    header("Location: index.php");
+}
 
-  if(isset($_POST['register'])) {
-    $validation = new Validator($_POST);
-    $errors = $validation->validateForm();
-    if($errors) {
-        // 
+if(isset($_POST['register']))
+{
+    include "database/validation.php";
+    if(!($firstnameErr || $lastnameErr || $emailErr || $phoneErr || $passwordErr))
+    {
+        include "database/register.php";
     }
-    else {
-        $users = new Users;
-        $users->register();
-    }
-  }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,25 +37,24 @@ session_start();
     <h1>რეგისტრაცია</h1>
     <div class="register-form">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="register" method="post">
-            <p><input type="text" name="firstname" placeholder="სახელი"></p>
-            <div class="error"><p><?php echo $errors['firstname'] ?? ''; ?></p></div>
+            <p><input type="text" name="firstname" placeholder="<?php echo $land['firstname']; ?>"></p>
+            <div class="error"><p><?php echo $firstnameErr ?? ''; ?></p></div>
 
-            <p><input type="text" name="lastname" placeholder="გვარი"></p>
-            <div class="error"><p><?php echo $errors['lastname'] ?? ''; ?></p></div>
+            <p><input type="text" name="lastname" placeholder="<?php echo $land['lastname']; ?>"></p>
+            <div class="error"><p><?php echo $lastnameErr ?? ''; ?></p></div>
 
-            <p><input type="email" name="email" placeholder="მეილი"></p>
-            <div class="error"><p><?php echo $errors['email'] ?? ''; ?></p></div>
+            <p><input type="email" name="email" placeholder="<?php echo $land['email']; ?>"></p>
+            <div class="error"><p><?php echo $emailErr ?? ''; ?></p></div>
 
-            <p><input type="text" name="phone" id='phone' min="0" value='+995'></p>
-            <div class="error"><p><?php echo $errors['phone'] ?? ''; ?></p></div>
+            <p><input type="text" name="phone" id='phone' min="0" placeholder='(+995) 555 55 55 55'></p>
+            <div class="error"><p><?php echo $phoneErr ?? ''; ?></p></div>
 
-            <p><input type="password" name="password" placeholder="პაროლი"></p>
-            <div class="error"><p><?php echo $errors['password'] ?? ''; ?></p></div>
+            <p><input type="password" name="password" placeholder="<?php echo $land['pass']; ?>"></p>
 
-            <p><input type="password" name="re-password" placeholder="გაიმეორეთ პაროლი"></p>
-            <div class="error"><p><?php echo $errors['re-password'] ?? ''; ?></p></div>
+            <p><input type="password" name="re-password" placeholder="<?php echo $land['repass']; ?>"></p>
+            <div class="error"><p><?php echo $passwordErr ?? ''; ?></p></div>
 
-            <p><input type="submit" name='register' value="რეგისტრაცია"></p>
+            <p><input type="submit" name='register' value="<?php echo $land['register']; ?>"></p>
         </form>
     </div>
 </main>
@@ -60,5 +62,22 @@ session_start();
 <script src="js/cleave.min.js"></script>
 <script src="js/cleave-phone.ge.js"></script>
 <script src="js/phone.js"></script>
+
+
+<!-- GetButton.io widget -->
+<script type="text/javascript">
+    (function () {
+        var options = {
+            facebook: "101305325132337", // Facebook page ID
+            call_to_action: "Message us", // Call to action
+            position: "right", // Position may be 'right' or 'left'
+        };
+        var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
+        var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+        s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+        var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+    })();
+</script>
+<!-- /GetButton.io widget -->
 </body>
 </html>

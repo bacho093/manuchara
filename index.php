@@ -1,6 +1,9 @@
 <?php
+// https://www.youtube.com/watch?v=L5uCc8Hab-I
   session_start();
-  include_once "includes/autoloader.inc.php";
+  include_once "database/dbh.php";
+  include "database/login.php";
+  include "languages/config.php";
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -17,17 +20,17 @@
   include "navigation/navigate.php";
 ?>
     <div class="text-info">
-      <h1>გარეცხე მანქანა სახლიდან გაუსვლელად...</h1>
+      <h1><?php echo $land['washcar']; ?></h1>
     </div>
     <main>
       <a href="">
         <div class="sedani">
-          <h2>სედანი</h2>
+          <h2><?php echo $land['sedan']; ?></h2>
         </div>
       </a>
       <a href="">
         <div class="jipi">
-          <h2>ჯიპი</h2>
+          <h2><?php echo $land['jeep']; ?></h2>
         </div>
       </a>
     </main>
@@ -37,5 +40,22 @@
       <a href="www.facebook.com"><i class="fab fa-instagram"></i></a>
       <a href="www.facebook.com"><i class="fab fa-google-plus-g"></i></a>
     </div>
+
+
+      <!-- GetButton.io widget -->
+<script type="text/javascript">
+    (function () {
+        var options = {
+            facebook: "101305325132337", // Facebook page ID
+            call_to_action: "Message us", // Call to action
+            position: "right", // Position may be 'right' or 'left'
+        };
+        var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
+        var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+        s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+        var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+    })();
+</script>
+<!-- /GetButton.io widget -->
   </body>
 </html>

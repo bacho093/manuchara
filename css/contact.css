@@ -1,0 +1,117 @@
+.contact-main {
+    padding-top: 50px;
+}
+.contact-main h1 {
+    text-align: center;
+    color: rgb(145, 143, 143);
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 25px;
+    text-shadow: 2px 2px 10px rgba(31, 79, 180, 0.5);
+    position: relative;
+    z-index: 2;
+}
+.contact-main h1::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 90%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 2px;
+    background: rgba(161, 162, 165, 0.664);
+    text-align: center;
+}
+.contact-main h1::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 105%;
+    transform: translate(-50%, -50%);
+    width: 170px;
+    height: 2px;
+    background: rgba(161, 162, 165, 0.664);
+    text-align: center;
+}
+
+.contact-box {
+    display: flex;
+    align-items: center;
+    max-width: 800px;
+    width: 100%;
+    margin: auto;
+    justify-content: space-around;
+    margin-top: 70px;
+}
+.contact-box div {
+    background-color: rgb(120, 148, 238);
+    height: 150px;
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+.contact-box div p {
+    color: rgb(253, 253, 253);
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+
+.contact-main .contact-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 55px;
+}
+.contact-main .contact-form h2 {
+    font-weight: bold;
+    color: #ccc;
+    font-size: 35px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+form textarea {
+    resize: none;
+}
+.contact-main .contact-form form input:not([type='submit']),
+.contact-main .contact-form form textarea {
+    width: 400px;
+    padding-left: 10px;
+    border: 1px solid rgb(201, 200, 200);
+    color: rgba(92, 86, 80, 0.842);
+    margin-top: 20px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    border-radius: 5px;
+}
+.contact-main .contact-form form input,
+.contact-main .contact-form form textarea {
+    outline: none;
+}
+
+.contact-main .contact-form form input:not([type='submit']) {
+    height: 25px;
+    font-weight: bold;
+}
+
+.contact-main .contact-form form textarea {
+    height: 100px;
+    overflow-x: hidden;
+    padding: 5px 0 0 10px;
+}
+.contact-main .contact-form form input[type='submit'] {
+    padding: 3px 17px;
+    margin-top: 7px;
+    float: right;
+    background: none;
+    outline: none;
+    border: 1px solid  rgb(230, 227, 227);
+    box-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+    border-radius: 15px;
+}

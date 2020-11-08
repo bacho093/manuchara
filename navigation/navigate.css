@@ -5,6 +5,23 @@
     box-shadow: 0px 0px 10px rgba(116, 116, 116, 0.5);
     background: rgba(248, 248, 248, 0.774);
   }
+
+  .lang {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #bba4a4;
+    border-radius: 50%;
+    padding: 5px;
+    box-shadow: inset 2px 0px 5px 1px rgb(207, 207, 207);
+    display: flex;
+    align-items: center;
+  }
+  .lang a {
+    transition: color 0.3s ease;
+  }
+  .lang a:hover {
+    color: rgba(13, 60, 114, 0.795);
+  }
   .navigations nav {
     padding: 20px 10px;
     display: flex;
@@ -13,7 +30,7 @@
   .nav-list {
     display: flex;
     justify-content:flex-start;
-    margin-top: 5px;
+    align-items: center;
   }
   .nav-list li{
     margin: 0px 20px;
@@ -38,6 +55,7 @@
     padding: 0 10px;
     font-size: 14px;
     color: #6e6e6e;
+    text-transform: uppercase;
   }
   .login-user li:nth-child(3) {
     color: rgb(182, 194, 18);

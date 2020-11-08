@@ -15,7 +15,7 @@ li {
 }
 
 .text-info {
-  padding-top: 50px;
+  padding-top: 70px;
 }
 .text-info h1 {
   text-align: center;
@@ -28,7 +28,7 @@ main {
   width: 100%;
   margin: auto;
   display: flex;
-  margin-top: 80px;
+  margin-top: 170px;
 }
 main a {
   width: 50%;
@@ -55,7 +55,7 @@ main div h2 {
 
 .social-icon {
   text-align: center;
-  margin-top: 25vh;
+  margin-top: 30vh;
 }
 .social-icon a:first-child {
   margin: 0px 25px;
