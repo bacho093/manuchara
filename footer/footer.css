@@ -1,0 +1,33 @@
+.footer {
+    background: #a0a0a0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    align-items: center;
+}
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.footer .logo {
+    padding: 10px 0;
+    left: 5%;
+    bottom: 0;
+    color: #fff;
+}
+.footer .logo a {
+    color: #fff;
+}
+.footer-list li a{
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+.footer-list ul {
+    display: flex;
+}
+.footer-list ul li {
+    margin: 0 15px;
+}

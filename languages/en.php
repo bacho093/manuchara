@@ -17,5 +17,8 @@ $land = array(
     "repass" => "Repeat Password",
     "magison" => "MAGISON",
     "tel" => "Tel",
-    "contactus" => "Contact Us"
+    "contactus" => "Contact Us",
+    "booking" => "Booking",
+    "profile" => "Profile",
+    "userpage" => "My Page"
 );

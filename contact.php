@@ -20,10 +20,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="footer/footer.css">
     <link rel="stylesheet" href="navigation/navigate.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <title>Contact</title>
@@ -44,27 +45,34 @@
         </div>
         <div class="contact-form">
             <h2><?php echo $land['contactus'] ?></h2>
-            <form action="" method="post">
-                <p>
-                    <input type="text" name="username" placeholder='Name:' value="<?php echo $uname ?>">
-                    <div class="error"><p><?php echo $fnameErr ?? ''; ?></p></div>
-                </p>
-                <p>
-                    <input type="email" name="user-email" placeholder="Your Email:" value="<?php echo $uemail; ?>">
-                    <div class="error"><p><?php echo $subemailErr ?? ''; ?></p></div>
-                </p>
-                <p>
-                    <input type="text" name="user-phone" id="phone" placeholder="Phone Number">
-                    <div class="error"><p><?php echo $phoneErr ?? ''; ?></p></div>
-                </p>
-                <p>
-                    <textarea name="user-msg" placeholder="Write to us"></textarea>
-                    <div class="error"><p><?php echo $msgErr ?? ''; ?></p></div>
-                </p>
-                <p>
-                    <input type="submit" name='sendmail' value="Send">
-                </p>
-            </form>
+            <div class="container">
+                <form action="" method="post">
+                    <div class="inputs">
+                        <p>
+                            <input type="text" name="username" placeholder='Name:' value="<?php echo $uname ?>">
+                            <div class="error"><p><?php echo $fnameErr ?? ''; ?></p></div>
+                        </p>
+                        <p>
+                            <input type="email" name="user-email" placeholder="Your Email:" value="<?php echo $uemail; ?>">
+                            <div class="error"><p><?php echo $subemailErr ?? ''; ?></p></div>
+                        </p>
+                        <p>
+                            <input type="text" name="user-phone" id="phone" placeholder="Phone Number">
+                            <div class="error"><p><?php echo $phoneErr ?? ''; ?></p></div>
+                        </p>
+                    </div>
+                    <div class="message">
+                        <p>
+                            <textarea name="user-msg" placeholder="Write to us"></textarea>
+                            <div class="error"><p><?php echo $msgErr ?? ''; ?></p></div>
+                        </p>
+                                            <p>
+                        <input type="submit" name='sendmail' value="Send">
+                    </p>
+                    </div>
+                    <div class="clear"></div>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -87,6 +95,8 @@
         var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
     })();
 </script>
-<!-- /GetButton.io widget -->
+<?php
+  include "footer/footer.php";
+?>
 </body>
 </html>

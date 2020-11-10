@@ -1,5 +1,4 @@
 <?php
-// https://www.youtube.com/watch?v=L5uCc8Hab-I
   session_start();
   include_once "database/dbh.php";
   include "database/login.php";
@@ -9,11 +8,13 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>MAGISON</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="footer/footer.css">
     <link rel="stylesheet" href="navigation/navigate.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <title><?php echo $land['magison']; ?></title>
   </head>
   <body>
 <?php
@@ -57,5 +58,9 @@
     })();
 </script>
 <!-- /GetButton.io widget -->
+
+<?php
+  include "footer/footer.php";
+?>
   </body>
 </html>

@@ -1,0 +1,284 @@
+body {
+    background: rgb(243 243 243 / 22%);
+}
+.main {
+    display: grid;
+    grid-template-columns: 15% 85%;
+}
+.newsone {
+    margin-top: -5%!important;
+}
+.addnew h1 {
+    text-align: center;
+    font-size: 25px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-top: 30px;
+}
+.add-product {
+    position: absolute;
+    left: 25%;
+    top: 5%;
+    border: 1px solid rgb(255, 0, 128);
+    background: rgb(255, 0, 128);
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+.add-product a{
+    color: #fff;
+}
+.searchproduct {
+    position: absolute;
+    left: 40%;
+    top: 5%;
+}
+.searchproduct input {
+    padding: 6px 10px;
+    width: 230px;
+    border:1px solid rgb(165, 97, 42);
+    border-radius: 3px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    animation: searchinput 2.5s ease infinite;
+    outline: none;
+}
+.searchproduct input:focus {
+    transform: scale(1.009)!important;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3)!important;
+}
+
+@keyframes searchinput {
+    0% {
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.4);
+        transform: scale(1.01);
+    }
+    100% {
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        transform: scale(1);
+    }
+}
+.product-list {
+    display: flex;
+    justify-content: center;
+}
+.product-form {
+    width: 90%;
+}
+table {
+    width: 100%;
+    margin-top: 100px;
+  }
+  
+  td, th {
+    border: 1px solid #e6e6e6;
+    text-align: left;
+    padding: 8px;
+  }
+  table td {
+      position: relative;
+  }
+  table td p {
+      position: absolute;
+      top: 15%;
+      color: lightslategray;
+  }
+  table td a {
+    position: absolute;
+}
+table td a:first-child {
+    color: rgba(255, 0, 34, 0.801);
+    top: 15%;
+}
+table td a:last-child {
+    color: rgba(0, 153, 255, 0.747);
+    top: 35%;
+}
+table td a:hover {
+    opacity: 0.5;
+}
+  table td .tdimg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  table td img {
+      max-width: 100px;
+      height: 100px;
+      object-fit: cover;
+  }
+  .newsimg {
+    max-width: 250px!important;
+}
+  tr:nth-child(even) {
+    background-color: #e0dfdf6c;
+  }
+
+  select {
+    padding: 3px 10px;
+    border: 1px solid rgba(0,0,0,0.45);
+  }
+
+  .total-product {
+    position: absolute;
+    right: 25%;
+    top: 5%;
+    border: 1px solid rgb(207, 209, 205);
+    background: rgb(207, 209, 205);
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+.total-product p{
+    color: #fff;
+}
+.total-product p span {
+    padding: 0 2px;
+    color: rgb(255, 0, 128);
+}
+
+
+/* ADD PRODUCT  */
+
+.addproduct {
+    background: #fff;
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.45);
+    width: 90%;
+    height: auto;
+    padding: 10px 30px;
+    margin: 0 0 50px 0;
+    z-index: -1;
+}
+.addproduct form label,
+.addproduct form input:not([type="submit"]){
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+.addproduct form label {
+    color: rgb(185, 185, 185);
+}
+.addproduct form input:not([type="submit"]) {
+    width: 98%;
+    border: 1px solid rgba(170, 169, 169, 0.658);
+    height: 30px;
+    border-radius: 3px;
+    padding-left: 10px;
+    transition: 0.3s ease;
+}
+.addproduct form textarea,
+.addproduct form input:not([type="submit"]):focus {
+    outline-color: rgba(32, 178, 171, 0.507);
+}
+.addproduct form input[type="file"] {
+    padding-top: 7px;
+} 
+.addproduct form input[type="submit"] {
+    float: right;
+    border: none;
+    background:  rgba(41, 85, 79, 0.747);
+    padding: 7px 15px;
+    color: #fff;
+    border-radius: 3px;
+    margin: 10px 10px 20px 0;
+    cursor: pointer;
+}
+.addproduct form textarea {
+    width: 98%;
+    border: 1px solid rgba(170, 169, 169, 0.658);
+    height: 200px;
+    border-radius: 3px;
+    padding-left: 15px;
+    padding-top: 15px;
+    transition: 0.3s ease;
+    resize: none;
+}
+
+
+/* ADD CATEGORY  */
+
+.catlist {
+    position: absolute;
+    top: 60%;
+    left: 5%;
+}
+.catlist h1 {
+    text-align: center;
+    border-bottom: 1px solid lightsalmon;
+    padding: 5px 0;
+    color: rgb(41, 85, 79);
+}
+
+.catlist ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.5s ease;
+    padding: 5px 20px;
+    border-bottom: 1px solid rgba(255, 160, 122, 0.596);
+}
+.catlist ul li:hover > p {
+    transform: scale(1.05);
+    border: 1px solid rgb(180, 178, 178);
+    color: #fff;
+}
+.catlist ul li p{
+    border: 1px solid lightgray;
+    padding: 3px 35px;
+    margin: 5px 0;
+    color: rgb(119, 115, 115);
+    transition: 0.3s ease;
+}
+.catlist ul li:hover {
+    background-color: rgba(18, 92, 88, 0.507);
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 5px;
+}
+
+.catlist ul li a {
+    color: #ff9800;
+    margin-left: 15px;
+    transition: 0.3s ease;
+}
+.catlist ul li a:hover {
+    opacity: 0.5;
+}
+.catlist ul li a:last-child {
+    color: rgba(255, 0, 34, 0.801);
+    margin-left: 15px;
+}
+#addcat {
+    float: right;
+    background:  rgba(122, 79, 39, 0.747);
+    padding: 7px 15px;
+    color: #fff;
+    border-radius: 3px;
+    margin: 10px 10px 20px 0;
+}
+
+/* NEWS  */
+
+.newsback {
+    position: absolute;
+    left: 10%;
+    top: 5%;
+    background: rgb(41, 85, 79);
+    padding: 5px 20px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+}
+.newsback{
+    color: #fff;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.newsback:hover {
+    background: rgba(41, 85, 79, 0.747);
+}

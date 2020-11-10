@@ -35,8 +35,8 @@
           if(isset($_SESSION['user'])){
             echo "<ul class='login-user'>
                     <li>".$_SESSION['user']."</li>
-                    <li><a href='profile'>ჩემი გვერდი</a></li>
-                    <li><a href='profile'>ჯავშანი</a></li>
+                    <li><a href='profile.php'> " . $land['profile'] . "</a></li>
+                    <li><a href='booking.php'>" . $land['booking'] . "</a></li>
                     <li>
                       <form class='logout' method='post'>
                         <button type='submit' name='logout'><i class='fas fa-sign-out-alt'></i></button>
