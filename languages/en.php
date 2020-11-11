@@ -20,5 +20,22 @@ $land = array(
     "contactus" => "Contact Us",
     "booking" => "Booking",
     "profile" => "Profile",
-    "userpage" => "My Page"
+    "userpage" => "My Page",
+    "transaction" => "Transactions",
+    "info" => "Personal Information",
+    "card" => "Cards",
+    "cars" => "Cars",
+    "manufacturer" => "Manufacturer",
+    "model" => "Model",
+    "color" => "Color",
+    "CarNumber" => "Car Number",
+    "selectoption" => "Select Option",
+    "add" => "Add",
+    "edit" => "Edit",
+    "delete" => "Delete",
+    "accept" => "Accept",
+    "close" => "Close",
+    "caraddress" => "Address (Location of the car)",
+    "addaddress" => "Add address"
+
 );

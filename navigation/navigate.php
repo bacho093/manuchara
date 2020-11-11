@@ -1,10 +1,15 @@
 <?php
-  include "database/login.php";
+  // include "database/login.php";
+  $users = new Users();
+  if(isset($_POST['login-submit']))
+  {
+    $users->login();
+  }
+
   if(isset($_POST['logout']))
   {
-    unset($_SESSION['user']);
-    unset($_SESSION['email']);
     unset($_SESSION['firstname']);
+    unset($_SESSION['email']);
   }
 ?>
 <div class="navigations">
@@ -32,9 +37,9 @@
                 ?>
         </ul>
         <?php
-          if(isset($_SESSION['user'])){
+          if(isset($_SESSION['firstname'])){
             echo "<ul class='login-user'>
-                    <li>".$_SESSION['user']."</li>
+                    <li>".$_SESSION['firstname']."</li>
                     <li><a href='profile.php'> " . $land['profile'] . "</a></li>
                     <li><a href='booking.php'>" . $land['booking'] . "</a></li>
                     <li>
@@ -51,7 +56,7 @@
             </ul>
               <li>
                 <form class='login' method='post'>
-                  <input type='email' name='email' placeholder='Email'>
+                  <input type='email' name='email' placeholder='Email' autofocus>
                   <input type='password' name='password' placeholder='Password'>
                   <input type='submit' name='login-submit' value='".$land['signin']."'>
               </form>

@@ -1,22 +1,26 @@
 <?php
 session_start();
-include_once "database/dbh.php";
+include_once "includes/autoloader.inc.php";
 include "languages/config.php";
 
-if(isset($_SESSION['user']) || isset($_SESSION['email'])) 
+if(isset($_SESSION['firstname']) || isset($_SESSION['email'])) 
 {
     header("Location: index.php");
 }
 
-if(isset($_POST['register']))
-{
-    include "database/validation.php";
-    if(!($firstnameErr || $lastnameErr || $emailErr || $phoneErr || $passwordErr))
-    {
-        include "database/register.php";
-    }
-}
+$users = new Users;
 
+if(isset($_POST['register'])) {
+  $validation = new Validator($_POST);
+  $errors = $validation->validateForm();
+  if($errors) {
+    // 
+  }
+  else {
+    $users->register();
+    header("Location: index.php");
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,21 +43,22 @@ if(isset($_POST['register']))
     <div class="register-form">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="register" method="post">
             <p><input type="text" name="firstname" placeholder="<?php echo $land['firstname']; ?>"></p>
-            <div class="error"><p><?php echo $firstnameErr ?? ''; ?></p></div>
+            <div class="error"><p><?php echo $errors['firstname'] ?? ''; ?></p></div>
 
             <p><input type="text" name="lastname" placeholder="<?php echo $land['lastname']; ?>"></p>
-            <div class="error"><p><?php echo $lastnameErr ?? ''; ?></p></div>
+            <div class="error"><p><?php echo $errors['lastname'] ?? ''; ?></p></div>
 
             <p><input type="email" name="email" placeholder="<?php echo $land['email']; ?>"></p>
-            <div class="error"><p><?php echo $emailErr ?? ''; ?></p></div>
+            <div class="error"><p><?php echo $errors['email'] ?? ''; ?></p></div>
 
             <p><input type="text" name="phone" id='phone' min="0" placeholder='(+995) 555 55 55 55'></p>
-            <div class="error"><p><?php echo $phoneErr ?? ''; ?></p></div>
+            <div class="error"><p><?php echo $errors['phone'] ?? ''; ?></p></div>
 
             <p><input type="password" name="password" placeholder="<?php echo $land['pass']; ?>"></p>
+            <div class="error"><p><?php echo $errors['password'] ?? ''; ?></p></div>
 
             <p><input type="password" name="re-password" placeholder="<?php echo $land['repass']; ?>"></p>
-            <div class="error"><p><?php echo $passwordErr ?? ''; ?></p></div>
+            <div class="error"><p><?php echo $errors['re-password'] ?? ''; ?></p></div>
 
             <p><input type="submit" name='register' value="<?php echo $land['register']; ?>"></p>
         </form>

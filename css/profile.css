@@ -1,6 +1,297 @@
-.profile-wrapper h1 {
-    text-align: center;
-    padding-top: 20px;
-    font-size: 20px;
-    letter-spacing: 1px;
+body,
+html {
+  overflow-x: hidden;
 }
+.form-wrapper .info {
+    display: flex;
+    align-items: center;
+}
+.form-wrapper .profile-image{
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 50%;
+}
+.form-wrapper .profile-image img {
+    width: 100%;
+    height: 100%;
+    height: auto;
+}
+
+.info-list {
+    padding-left: 40px;
+}
+.info-list li {
+    margin: 10px 0;
+    color: #7e7d7d;
+}
+.info-list li:first-child {
+  text-transform: capitalize;
+}
+.top-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.edit-profile {
+  display: flex;
+  align-items: center;
+}
+.logout form button {
+  border: none;
+  background: rgb(182, 16, 16);
+  border: 1px solid rgb(182, 16, 16);
+  padding: .03rem 0.8rem;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: border, background 0.3s ease ;
+}
+.logout form button:hover {
+  background: #665e5e;
+  border: 1px solid #826a6a;
+}
+.edit-profile {
+  display: flex;
+  justify-content: space-around;
+  width: 20%;
+}
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    background-color: #f1f1f1;
+  }
+  
+  /* Style the buttons inside the tab */
+  .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Create an active/current tablink class */
+  .tab button.active {
+    background-color: #ffc107;
+    border-radius: 3px;
+    color: #826a6a;
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+  }
+  .tab button {
+    font-size: 14px;
+  }
+
+  .boxes {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 25px;
+  }
+  .left-box{
+    width: 30%;
+  }
+  .right-box  {
+    width: 65%;
+  }
+
+  .box-list .box-li,
+  .box-title {
+    border: 1px solid rgba(226, 222, 222, 0.89);
+    color: rgb(180, 179, 179);
+    font-size: 15px;
+  }
+  .carList {
+    margin-top: 25px;
+  }
+  .box-list .box-li {
+    margin-bottom: 5px;
+    padding: 20px 0;
+    padding-left: 20px;
+  }
+  .editinput {
+    outline: none;
+    border: none;
+    color: #FF5722;
+    border-bottom: 1px dotted black;
+    padding-left: 15px;
+  }
+  .editbtn {
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    background: none;
+    border: none;
+    font-weight: bold;
+    color: #ff5722;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  .box-title {
+    color:#ffc107;
+    letter-spacing: 1px;
+    padding: 10px;
+    padding-left: 20px;
+    background-color:#989898;
+    display: flex;
+    justify-content: space-between;
+  }
+  .box-title span button {
+    float: right;
+    background: none;
+    border: none;
+    outline: none;
+    color: #e8b92b;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  .box-title span button:hover {
+    color:#ffc107
+  }
+  .box-list .box-li ul li {
+    color: rgb(133, 130, 130);
+    margin-top: 5px;
+    padding-left: 5px;
+  }
+  .transaction {
+    margin-top: 25px;
+  }
+  .carlistdiv {
+    margin-top: 25px;
+  }
+  .car-li {
+    padding-left: 10px!important;
+  }
+  .car-li span {
+    text-transform: uppercase;
+  }
+  .carList .box-li {
+    text-transform: uppercase;
+  }
+  .carList {
+    border: 1px solid rgba(226, 222, 222, 0.89);
+    color: rgb(180, 179, 179);
+    font-size: 15px;
+    padding: 5px 0;
+    color: rgb(133, 130, 130);
+    margin-top: 0px;
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+  .carList li {
+    margin: 5px 0;
+    padding: 7px 0;
+  }
+  .carList li:nth-child(odd) {
+    background-color: #e0e0e0;
+  }
+  .burger div {
+    width: 20px;
+    height: 2px;
+    margin: 4px;
+    background-color: #212529;
+    transition: 0.2s ease;
+  }
+  .toggle .line1 {
+    transform: rotate(-45deg) translate(-5px, 5px);
+  }
+  .toggle .line2 {
+    opacity: 0;
+  }
+  .toggle .line3 {
+    transform: rotate(45deg) translate(-3px, -4px);
+  }
+  .languages ul li a {
+    color: rgb(146, 164, 175);
+  }
+
+  /* navigation */
+  .profile-navigation {
+    justify-content: space-around;
+    align-items: center;
+    background-color: #525773;
+    display: none;
+    transform: translateY(-100%);
+  }
+  .profile-navigation.toggle {
+    display: flex;
+    transform: translateY(0%);
+  }
+  .nav {
+    width: 30%;
+  }
+  .pro-list {
+    display: flex;
+    justify-content: space-around;
+  }
+  .pro-list li {
+    padding: 10px;
+  }
+  .pro-list li a {
+    color: rgb(218, 214, 214);
+    transition: 0.3s ease;
+  }
+  .pro-list li a:hover {
+    color: #fff;
+  }
+
+  .addaddress {
+    float: right;
+    outline: none;
+    border: none;
+    background: none;
+    color: #E91E63;
+    cursor: pointer;
+}
+.address-form {
+  border-top: 1px solid #ccc;
+  padding: 10px 0;
+  width: 94%;
+}
+.addressInp {
+  border: none;
+  outline: none;
+  background: none;
+  border-bottom:1px dotted #000;
+  color: #FF5722;
+  width: 98%;
+}
+.car_addr {
+  padding: 5px 0;
+}
+.car_addr:not(:first-child) {
+  max-width: 80%;
+  border-top: 1px solid #ccc;
+}
+.address-submit {
+  float: right;
+  border: none;
+  outline: none;
+  background: none;
+  color: #5e2b3c;
+  font-weight: bold;
+  padding: 5px 0px;
+}
+  .error {
+    color: rgb(165, 14, 14);
+    text-align: center;
+  }
+  .error:nth-child(odd)
+  {
+    color: #212529;
+  }

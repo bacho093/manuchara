@@ -1,15 +1,24 @@
 <?php
     session_start();
-    include_once "database/dbh.php";
-    include "database/login.php";
-    include "database/contact.php";
+    include_once "includes/autoloader.inc.php";
     include "languages/config.php";
 
 
-    if(isset($_SESSION['user']))
+    if(isset($_POST['sendmail'])) {
+      $validcontact = new Validcontact($_POST);
+      $errors = $validcontact->validatecont();
+      if($errors) {
+        // 
+      }
+      else {
+        $sendmail = new Sendmail();
+      }
+    }
+
+    if(isset($_SESSION['firstname']))
     {
         $uemail = $_SESSION['email'];
-        $uname = $_SESSION['user'];
+        $uname = $_SESSION['firstname'];
     }
     else {
         $uemail = '';
@@ -57,7 +66,7 @@
                             <div class="error"><p><?php echo $subemailErr ?? ''; ?></p></div>
                         </p>
                         <p>
-                            <input type="text" name="user-phone" id="phone" placeholder="Phone Number">
+                            <input type="text" name="user-phone" id="phone" placeholder="Phone Number" value='<?php echo $_SESSION['phone']; ?>'>
                             <div class="error"><p><?php echo $phoneErr ?? ''; ?></p></div>
                         </p>
                     </div>

@@ -1,7 +1,6 @@
 <?php
   session_start();
-  include_once "database/dbh.php";
-  include "database/login.php";
+  include_once "includes/autoloader.inc.php";
   include "languages/config.php";
 ?>
 <!DOCTYPE html>
