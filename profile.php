@@ -112,7 +112,7 @@
                 <li class='box-title'><?php echo $land['info'] ?>
                     <span>
                         <form action="" method="post">
-                            <button type="submit" name='updateinfo'><span><i class="fas fa-pencil-alt"></i></span></button>
+                            <button type="submit" name='updateinfo'><span>change<i class="fas fa-pencil-alt"></i></span></button>
                         </form>
                     </span>
                 </li>
@@ -125,10 +125,15 @@
                 <?php
                     $userprofile->selectproinfo();
                 ?>
-                <li class='box-li'><?php echo $land['caraddress']; ?>:
+                <?php if(isset($_POST['updateinfo'])) {
+                    echo "</li>
+                    <button type='submit' class='editbtn' name='updateproinfo'>".$land['edit']."
+                    </form>
+                    </ul>";
+                } ?>
                 <ul>
                     <?php
-                        $userprofile->joininfo();
+                        // $userprofile->addnewaddr();
                         $userprofile->addaddress();
                     ?>
                 </ul>

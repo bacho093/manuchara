@@ -1,7 +1,6 @@
 <?php
             
 class Profile extends Dbh {
-    
     function infolist() {
         $Sessemail = $_SESSION['email'];
         $Sessid = $_SESSION['id'];
@@ -24,9 +23,10 @@ class Profile extends Dbh {
         include "languages/config.php";
         $Sessemail = $_SESSION['email'];
         $Sessid = $_SESSION['id'];
-        $sql = "SELECT * FROM users WHERE email='$Sessemail' AND id='$Sessid'";
-                
+
+        $sql = "SELECT * FROM users WHERE email='$Sessemail' AND id='$Sessid'";                
         $stmt = $this->connect()->query($sql);
+
         while($row = $stmt->fetch())
         {
             $firstname = $row['firstname'];
@@ -34,6 +34,10 @@ class Profile extends Dbh {
             $email = $row['email'];
             $phone = $row['phone'];
             $image = $row['image'];
+        }
+
+        $sqljoin = "SELECT user_id AS userId , car_address FROM caraddress WHERE user_id=$Sessid";
+        $stmt2 = $this->connect()->query($sqljoin);
 
             if(!isset($_POST['updateinfo']))
             {
@@ -57,8 +61,22 @@ class Profile extends Dbh {
                     <ul>
                         <li>$phone</li>
                     </ul>
-                </li>
-";
+                </li>"?> 
+                <?php 
+                        while($row2 = $stmt2->fetchAll()) {
+                            foreach($row2 as $r) {
+                                $car_address = $r['car_address'];
+                                $carAddr = "<li>$car_address</li>";
+                
+                               echo "<li class='box-li'>". $land['caraddress'] .":
+                                <ul>
+                                $carAddr
+                                </ul>
+                                </li>";
+                            }
+                        }
+                ?>
+                <?php
             }
             else {
                 echo "
@@ -91,32 +109,51 @@ class Profile extends Dbh {
                     </li>
                 </ul>
                 </li>
-                <li class='box-li'>". $land['caraddress'] .":
-                <ul>
-                    <li>". $_SESSION['phone'] ."</li>
-                </ul>
-                </li>
-                    <button type='submit' class='editbtn' name='updateproinfo'>".$land['edit']."
-                </form>
-                </ul>";
+                "?> 
+                <?php 
+                        while($row2 = $stmt2->fetchAll()) {
+                            foreach($row2 as $r) {
+                                $car_address = $r['car_address'];
+                                $carAddr = "<input type='text' class='editinput' name='phone' value='$car_address'>";
+                
+                               echo "<li class='box-li'>". $land['caraddress'] .":
+                                <ul>
+                                $carAddr
+                                </ul>
+                                </li>";
+                            }
+                        }
+                ?>
+                <?php
             }
-        }
     }
 
-    function joininfo() {
+    // function addnewaddr() {
+    //     include "languages/config.php";
+
+    //     $Sessid = $_SESSION['id'];  
+    //         $sql = "SELECT caraddress.user_id, caraddress.car_address, users.id
+    //         FROM caraddress
+    //         JOIN users ON users.id='$Sessid' AND caraddress.user_id=users.id";
+                
+    //     $stmt = $this->connect()->prepare($sql);
+    //     $stmt->execute();
+    //     while($row = $stmt->fetch()) {
+    //         $address = $row['car_address'];
+    //         echo "<li class='car_addr'>$address</li>";
+    //     }
+        // if(!isset($_POST['addaddress']))
+        // {
+        //     echo "
+        //     <form method='POST' action=''>
+        //         <button type='submit' name='addaddress' class='addaddress'>".$land['addaddress']."
+        //     </form>";
+        // }
+    // }
+
+    function addaddress() {
         include "languages/config.php";
 
-        $Sessid = $_SESSION['id'];  
-            $sql = "SELECT caraddress.user_id, caraddress.car_address, users.id
-            FROM caraddress
-            JOIN users ON users.id='$Sessid' AND caraddress.user_id=users.id";
-                
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->execute();
-        while($row = $stmt->fetch()) {
-            $address = $row['car_address'];
-            echo "<li class='car_addr'>$address</li>";
-        }
         if(!isset($_POST['addaddress']))
         {
             echo "
@@ -124,10 +161,6 @@ class Profile extends Dbh {
                 <button type='submit' name='addaddress' class='addaddress'>".$land['addaddress']."
             </form>";
         }
-    }
-
-    function addaddress() {
-        include "languages/config.php";
 
         if(isset($_POST['addaddress']))
         {
@@ -162,3 +195,4 @@ class Profile extends Dbh {
         }
     }
 }
+
