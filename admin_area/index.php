@@ -1,5 +1,6 @@
 <?php
-    include_once "../database/dbh.php";
+    session_start();
+    include "../includes/autoloader.inc.php";
 
 ?>
 <!DOCTYPE html>

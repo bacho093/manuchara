@@ -36,6 +36,7 @@ $land = array(
     "accept" => "Accept",
     "close" => "Close",
     "caraddress" => "Address (Location of the car)",
-    "addaddress" => "Add address"
-
+    "addaddress" => "Add address",
+    "changemail" => "Your information has changed successfully.",
+    "addressErr" => "The address must not contain more than 40 characters."
 );

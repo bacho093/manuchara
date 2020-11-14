@@ -1,5 +1,5 @@
 <?php
-            
+include "dbh.class.php";
 class Profile extends Dbh {
     function infolist() {
         $Sessemail = $_SESSION['email'];
@@ -36,7 +36,7 @@ class Profile extends Dbh {
             $image = $row['image'];
         }
 
-        $sqljoin = "SELECT user_id AS userId , car_address FROM caraddress WHERE user_id=$Sessid";
+        $sqljoin = "SELECT id, user_id AS userId, car_address FROM caraddress WHERE user_id=$Sessid";
         $stmt2 = $this->connect()->query($sqljoin);
 
             if(!isset($_POST['updateinfo']))
@@ -61,22 +61,7 @@ class Profile extends Dbh {
                     <ul>
                         <li>$phone</li>
                     </ul>
-                </li>"?> 
-                <?php 
-                        while($row2 = $stmt2->fetchAll()) {
-                            foreach($row2 as $r) {
-                                $car_address = $r['car_address'];
-                                $carAddr = "<li>$car_address</li>";
-                
-                               echo "<li class='box-li'>". $land['caraddress'] .":
-                                <ul>
-                                $carAddr
-                                </ul>
-                                </li>";
-                            }
-                        }
-                ?>
-                <?php
+                </li>";
             }
             else {
                 echo "
@@ -109,47 +94,67 @@ class Profile extends Dbh {
                     </li>
                 </ul>
                 </li>
-                "?> 
-                <?php 
-                        while($row2 = $stmt2->fetchAll()) {
-                            foreach($row2 as $r) {
-                                $car_address = $r['car_address'];
-                                $carAddr = "<input type='text' class='editinput' name='phone' value='$car_address'>";
-                
-                               echo "<li class='box-li'>". $land['caraddress'] .":
-                                <ul>
-                                $carAddr
-                                </ul>
-                                </li>";
-                            }
-                        }
-                ?>
-                <?php
+                ";
             }
     }
 
-    // function addnewaddr() {
-    //     include "languages/config.php";
+    function carLocation() {
+        $Sessid = $_SESSION['id'];
+        $sql = "SELECT * FROM caraddress WHERE user_id=$Sessid";
+        $stmt = $this->connect()->query($sql);
 
-    //     $Sessid = $_SESSION['id'];  
-    //         $sql = "SELECT caraddress.user_id, caraddress.car_address, users.id
-    //         FROM caraddress
-    //         JOIN users ON users.id='$Sessid' AND caraddress.user_id=users.id";
-                
-    //     $stmt = $this->connect()->prepare($sql);
-    //     $stmt->execute();
-    //     while($row = $stmt->fetch()) {
-    //         $address = $row['car_address'];
-    //         echo "<li class='car_addr'>$address</li>";
-    //     }
-        // if(!isset($_POST['addaddress']))
-        // {
-        //     echo "
-        //     <form method='POST' action=''>
-        //         <button type='submit' name='addaddress' class='addaddress'>".$land['addaddress']."
-        //     </form>";
-        // }
-    // }
+        while($row = $stmt->fetchAll()) {
+            foreach($row as $r) {
+                $car_addr_id = $r['id'];
+                $car_address = $r['car_address'];
+
+                if(!(isset($_POST['changeaddr']))) {
+                    echo "<li class='car-li'>$car_address</li>";
+                }
+                else {
+                    echo "<form action='' method='POST'>
+                        <ul>
+                            <li class='addr-li'>
+                                <form method='POST' action=''>
+                                <input type='hidden' class='editcaraddr' name='car_addr_id' value='$car_addr_id'>
+                                <input type='text' class='editcaraddr' name='editcaraddr' value='$car_address'>
+                                    <button type='submit' class='addr-done' name='updateprocarinfo'><span><i class='fas fa-check'></i></span></button>
+                                    <button type='submit' class='remove-addr' name='removeddr'><span><i class='fas fa-trash-alt'></i></span></button>
+                                </form>
+                            </li>
+                        </ul>
+                        </form>";
+                }
+            }   
+        }
+    }
+    
+    function updateselectcaraddrinfo() {
+        if(isset($_POST['updateprocarinfo']))
+        {
+            $addrId = $_POST['car_addr_id'];
+            $editcaraddr = htmlspecialchars($_POST['editcaraddr']);
+
+            if(strlen($editcaraddr) > 40) {
+                $addrErr = "";
+            }
+            else {
+            $sql = "UPDATE caraddress SET car_address='$editcaraddr' WHERE id='$addrId'";
+            $stmt= $this->connect()->query($sql);
+
+            echo "<script>window.open('profile.php','_self')</script>";
+        }
+    }
+}
+
+    function deletecaraddrinfo() {
+        if(isset($_POST['removeddr']))
+        {
+            $addrId = $_POST['car_addr_id'];
+            $sql = "DELETE FROM caraddress WHERE id='$addrId'";
+            $stmt= $this->connect()->query($sql);
+        }
+    }
 
     function addaddress() {
         include "languages/config.php";
@@ -180,19 +185,96 @@ class Profile extends Dbh {
                     $user_id = $_POST['user_id'],
                     $car_address = $_POST['car_address']
                 ]);
+                echo "<script>window.open('profile.php','_self')</script>";
             }
         }
     
 
     function updateselectproinfo() {
-
+        include "languages/config.php";
         if(isset($_POST['updateproinfo']))
         {
             $Sessid = $_SESSION['id'];
             $editfirstname = $_POST['firstname'];
-            $sql = "UPDATE users SET firstname='$editfirstname' WHERE id=$Sessid";
+            $editlastname = $_POST['lastname'];
+            $editemail = $_POST['email'];
+            $editphone = $_POST['phone'];
+            $sql = "UPDATE users SET firstname='$editfirstname', lastname='$editlastname', 
+                    email='$editemail', phone='$editphone' WHERE id=$Sessid";
             $stmt = $this->connect()->query($sql);
+
+            if($_SESSION['email'] = $editemail)
+            {
+                echo "<script>alert('".$land['changemail']."')</script>";
+            }
+        }
+    }
+
+    // CARS
+
+    function carinfo() {
+        include "languages/config.php";
+        if(isset($_POST['updatecars']))
+        {
+            $sql = "SELECT * FROM cars";
+            $stmt = $this->connect()->query($sql);
+            while($row = $stmt->fetch())
+            {
+                // $manufactId = $row['car_id'];
+                $manufacturer = $row['cars'];
+                echo "<option class='manufaccars' value='$manufacturer'>$manufacturer</option>";
+            }
+        
+        }
+        if(!isset($_POST['updatecars'])) {
+            $Sessid = $_SESSION['id'];
+            $sql = "SELECT car FROM user_car WHERE user_id='$Sessid'";
+            $stmt = $this->connect()->query($sql);
+
+            while($row = $stmt->fetch())
+            {   
+                $manufacturer = $row['car'];
+
+                echo "<li class='car-li'>".$land['manufacturer'].": <span>$manufacturer</span></li>";
+            }
+        }
+    }
+
+    function insertcarinfo() {
+        if(isset($_POST['insertcarinfo']))
+        {
+            $selectcar = htmlspecialchars($_POST['selectcar']);
+            if(empty($selectcar))
+            {
+                $carErr = "Car fields can not be empty!";
+            }
+            else {
+                $sql = "INSERT INTO user_car (user_id, car) VALUE (?,?)";
+                $stmt = $this->connect()->prepare($sql);
+
+                $stmt->execute([
+                    $user_id = $_SESSION['id'],
+                    $selectcar = htmlspecialchars($_POST['selectcar'])
+                ]);
+            }
+        }
+    }
+
+    function modelinfo() {
+        if(isset($_POST['query'])) {
+            $carname = $_POST['query'];
+            echo "<script>alert($carname)</script>";
+            $sql = "SELECT model FROM models WHERE car_name='$carname'";
+            $stmt = $this->connect()->query($sql);
+
+            while($row = $stmt->fetch())
+            {
+                $modellist = $row['model'];
+                echo "<option value='$modellist'>$modellist</option>";
+            }
         }
     }
 }
 
+$modeProfile = new Profile();
+$modeProfile->modelinfo();

@@ -5,6 +5,10 @@
 
     $userprofile = new Profile();
 
+    $userprofile->updateselectcaraddrinfo();
+    $userprofile->deletecaraddrinfo();
+    $userprofile->insertcarinfo();
+
     if(isset($_POST['updateproinfo'])) {
     $Updatevalidate = new Updatevalidate($_POST);
     $errors = $Updatevalidate->validateForm();
@@ -33,6 +37,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title><?php echo $land['profile']; ?></title>
 </head>
 <body>
@@ -112,7 +117,7 @@
                 <li class='box-title'><?php echo $land['info'] ?>
                     <span>
                         <form action="" method="post">
-                            <button type="submit" name='updateinfo'><span>change<i class="fas fa-pencil-alt"></i></span></button>
+                            <button type="submit" name='updateinfo'><span><i class="fas fa-pencil-alt"></i></span></button>
                         </form>
                     </span>
                 </li>
@@ -131,14 +136,33 @@
                     </form>
                     </ul>";
                 } ?>
+                </li>
+                </ul>
+
+            <!-- CAR LOCATION  -->
+            <div class='box-title carlistdiv'><?php echo $land['caraddress'] ?>
+            <span>
+                <?php
+                if(!(isset($_POST['changeaddr']))) {
+                    echo "<form action='' method='post'>
+                                <button type='submit' name='changeaddr'><span><i class='fas fa-pencil-alt'></i></span></button>
+                            </form>";
+                }
+                ?>
+            </span>
+            </div>
+            <ul class='box-list carList'>
+
+                </li>
+                <?php
+                    $userprofile->carLocation();
+                ?>
                 <ul>
                     <?php
-                        // $userprofile->addnewaddr();
                         $userprofile->addaddress();
                     ?>
                 </ul>
-                </li>
-                </ul>
+            </ul>
 
             <!-- CAR LIST -->
             <div class='box-title carlistdiv'><?php echo $land['cars'] ?>
@@ -150,10 +174,42 @@
             </div>
 
             <ul class='box-list carList'>
-                <li class='car-li'><?php echo $land['manufacturer']; ?>: <span>bmw</span></li>
+
+            <?php if(isset($_POST['updatecars'])) :?>
+                <form id='carsform' action="" method="post">
+                    <select name="selectcar" id='selectcar'>
+                        <option value=""><?php echo $land['manufacturer']; ?></option>
+                            <?php
+                                $userprofile->carinfo();
+                            ?>
+                            
+                    </select>
+                    <select name="selectmodel" id='selectmodel'>
+                        <option value=""><?php echo $land['model']; ?></option>
+                            <?php
+                                $userprofile->modelinfo();
+                            ?>
+                            
+                    </select>
+                <?php
+                    echo "<form method='POST' action=''>
+                            <button type='submit' class='editbtn' name='insertcarinfo'>".$land['edit']."
+                        ";
+                ?>
+                </form>
+            <?php endif; ?>
+
+            
+
+            <?php if(!isset($_POST['updatecars'])) : ?>
+                <?php
+                    $userprofile->carinfo();
+                ?>
                 <li class='car-li'><?php echo $land['model']; ?>: <span>M6</span></li>
                 <li class='car-li'><?php echo $land['color']; ?>: <span>თეთრი</span></li>
                 <li class='car-li'><?php echo $land['CarNumber'];?>: <span>aa-111-aa</span></li>
+            <?php endif; ?>
+
             </ul>
 
         </div>
@@ -240,5 +296,27 @@ function openCity(evt, cityName) {
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 </script>
+
+
+<script>
+        $(document).ready(function() {
+            $('#selectcar').on('change',function() {
+                var carsModel = $('#selectcar').val();
+                if(carsModel !== '')
+                {
+                    $.ajax({
+                        url: 'classes/profile.class.php',
+                        method: 'POST',
+                        data: {
+                            query: carsModel
+                        },
+                        success: function(res){
+                            $('#selectmodel').html(res);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

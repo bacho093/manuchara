@@ -1,7 +1,7 @@
 <?php
     session_start();
-    include "../database/dbh.php";
-    include "admin_database/users.php";
+    include "../includes/autoloader.inc.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="sidebar/sidebar.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/reset.css">
+    <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <title>მომხმარებლები</title>
 </head>
 <body>

@@ -44,7 +44,7 @@
 }
 .nav {
     padding: 20px;
-    background: #2a0d5f; 
+    background: #989898; 
     height: 100vh;
     position: fixed;
     width: 12%;
@@ -52,10 +52,10 @@
 .nav-list li {
     width: 100%;
     padding: 25px 0;
-    color: #fff;
+    color: #ffc107;
 }
 .nav-list li a {
-    color: #fff;
+    color: #ffc107;
     letter-spacing: 1px;
     transition: 0.3s ease;
     font-size: 14px;
