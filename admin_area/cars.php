@@ -61,14 +61,15 @@
             
                 <div class="manufacture">
                     <h1>Enter a value</h1>
-                    <input type="text" name="model" class='newCar'>
+                    <input type="text" name="model" class='newCar' autofocus>
                     <input type="submit" name='addmodel' class='addnew' value="Add Model">
                     </form>
 
                     <ul class="carlist">
                     <p class='lastadded'>Last Added...</p>
-                        <li>asdasdasd</li>
-                        <li>asdasdasd</li>
+                        <?php
+                            $cars->lastaddedmodel();
+                        ?>
                     </ul>
                 </div>
             </div>

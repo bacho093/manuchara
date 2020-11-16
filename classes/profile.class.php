@@ -228,14 +228,30 @@ class Profile extends Dbh {
         }
         if(!isset($_POST['updatecars'])) {
             $Sessid = $_SESSION['id'];
-            $sql = "SELECT car FROM user_car WHERE user_id='$Sessid'";
+            $sql = "SELECT car, model FROM user_car WHERE user_id='$Sessid'";
             $stmt = $this->connect()->query($sql);
 
             while($row = $stmt->fetch())
             {   
                 $manufacturer = $row['car'];
+                $model = $row['model'];
 
-                echo "<li class='car-li'>".$land['manufacturer'].": <span>$manufacturer</span></li>";
+                echo "<li class='car-li'>".$land['manufacturer'].": <span>$manufacturer</span></li>
+                        <li class='car-li'>".$land['model'].": <span>$model</span></li>";
+            }
+        }
+    }
+
+    function modelinfo() {
+        if(isset($_POST['query'])) {
+            $carname = $_POST['query'];
+            $sql = "SELECT model FROM models WHERE car_name='$carname'";
+            $stmt = $this->connect()->query($sql);
+
+            while($row = $stmt->fetch())
+            {
+                $modellist = $row['model'];
+                echo "<option value='$modellist'>$modellist</option>";
             }
         }
     }
@@ -244,33 +260,20 @@ class Profile extends Dbh {
         if(isset($_POST['insertcarinfo']))
         {
             $selectcar = htmlspecialchars($_POST['selectcar']);
-            if(empty($selectcar))
+            $selectmodel = htmlspecialchars($_POST['selectmodel']);
+            if(empty($selectcar) || empty($selectmodel))
             {
-                $carErr = "Car fields can not be empty!";
+                $carErr = "Fields can not be empty!";
             }
             else {
-                $sql = "INSERT INTO user_car (user_id, car) VALUE (?,?)";
+                $sql = "INSERT INTO user_car (user_id, car, model) VALUE (?,?,?)";
                 $stmt = $this->connect()->prepare($sql);
 
                 $stmt->execute([
                     $user_id = $_SESSION['id'],
-                    $selectcar = htmlspecialchars($_POST['selectcar'])
+                    $selectcar = htmlspecialchars($_POST['selectcar']),
+                    $selectmodel = htmlspecialchars($_POST['selectmodel'])
                 ]);
-            }
-        }
-    }
-
-    function modelinfo() {
-        if(isset($_POST['query'])) {
-            $carname = $_POST['query'];
-            echo "<script>alert($carname)</script>";
-            $sql = "SELECT model FROM models WHERE car_name='$carname'";
-            $stmt = $this->connect()->query($sql);
-
-            while($row = $stmt->fetch())
-            {
-                $modellist = $row['model'];
-                echo "<option value='$modellist'>$modellist</option>";
             }
         }
     }

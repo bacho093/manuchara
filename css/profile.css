@@ -257,6 +257,7 @@ html {
     background: none;
     color: #E91E63;
     cursor: pointer;
+    margin-top: 5px;
 }
 .address-form {
   border-top: 1px solid #ccc;
@@ -343,4 +344,5 @@ html {
 #carsform select {
   margin: 5px 0;
   padding: 3px;
+  text-transform: uppercase;
 }

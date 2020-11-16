@@ -19,9 +19,8 @@
 .car-list h1 {
     background: #e6e4e4;
     padding: 5px;
-    width: 200px;
+    width: 300px;
     color: #b39533;
-    /* height: 20px; */
     display: flex;
     flex-direction: column;
     align-items: center;

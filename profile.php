@@ -41,15 +41,6 @@
     <title><?php echo $land['profile']; ?></title>
 </head>
 <body>
-    <div class="profile-navigation">
-        <nav class="nav">
-            <ul class="pro-list">
-                <li><a href="index.php"><?php echo $land["home"]; ?></a></li>
-                <li><a href="about.php"><?php echo $land['about']; ?></a></li>
-                <li><a href="contact.php"><?php echo $land['contact']; ?></a></li>
-            </ul>
-        </nav>
-    </div>
 
     <div class="profilepage">
         <div class="profile-wrapper">
@@ -105,6 +96,19 @@
             </div>
         </div>
     </div>
+
+    <!-- NAVIGATION  -->
+    <div class="profile-navigation">
+        <nav class="nav">
+            <ul class="pro-list">
+                <li><a href="index.php"><?php echo $land["home"]; ?></a></li>
+                <li><a href="about.php"><?php echo $land['about']; ?></a></li>
+                <li><a href="contact.php"><?php echo $land['contact']; ?></a></li>
+            </ul>
+        </nav>
+    </div>
+
+
     <div class="tab">
         <button class="tablinks" onclick="openCity(event, 'about')" id="defaultOpen"><?php echo $land['profile'] ?></button>
         <button class="tablinks" onclick="openCity(event, 'transaction')"><?php echo $land['transaction'] ?></button>
@@ -205,7 +209,6 @@
                 <?php
                     $userprofile->carinfo();
                 ?>
-                <li class='car-li'><?php echo $land['model']; ?>: <span>M6</span></li>
                 <li class='car-li'><?php echo $land['color']; ?>: <span>თეთრი</span></li>
                 <li class='car-li'><?php echo $land['CarNumber'];?>: <span>aa-111-aa</span></li>
             <?php endif; ?>

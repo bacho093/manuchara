@@ -49,7 +49,7 @@ class Admincars extends Dbh {
     function selectcars() {
         if(empty($_POST['query']))
         {
-            $sql = "SELECT cars FROM cars ORDER BY rand() LIMIT 20";
+            $sql = "SELECT cars FROM cars ORDER BY rand() LIMIT 15";
             $stmt = $this->connect()->query($sql);
 
             while($row = $stmt->fetch())
@@ -77,9 +77,22 @@ class Admincars extends Dbh {
             $stmt = $this->connect()->prepare($sql);
 
             $stmt->execute([
-                $carName = htmlspecialchars($_POST['addmanufacturer']),
+                // $carName = htmlspecialchars($_POST['addmanufacturer']),
+                $carName = 'lexus',
                 $model = htmlspecialchars($_POST['model'])
             ]);
+        }
+    }
+
+    function lastaddedmodel() {
+        $sql = "SELECT car_name, model FROM models ORDER BY id DESC LIMIT 5";
+        $stmt = $this->connect()->query($sql);
+
+        while($row = $stmt->fetch()){
+            $car_name = $row['car_name'];
+            $model = $row['model'];
+        
+            echo "<li>$car_name - $model</li>";
         }
     }
 }
