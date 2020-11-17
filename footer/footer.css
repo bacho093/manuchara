@@ -5,6 +5,7 @@
     right: 0;
     bottom: 0;
     align-items: center;
+    height: 5vh;
 }
 .wrapper {
     display: flex;
@@ -31,3 +32,21 @@
 .footer-list ul li {
     margin: 0 15px;
 }
+@media screen and (max-width: 720px)
+{
+    .footer {
+        bottom: unset;
+    }
+} 
+@media screen and (max-height: 670px)
+{
+    .footer {
+        bottom: unset!important;
+    }
+}
+@media screen and (max-width: 450px)
+{
+    .footer {
+        bottom: 0;
+    }
+} 

@@ -90,6 +90,7 @@
 <script src="js/cleave.min.js"></script>
 <script src="js/cleave-phone.ge.js"></script>
 <script src="js/phone.js"></script>
+<script src="js/navigation.js"></script>
           <!-- GetButton.io widget -->
 <script type="text/javascript">
     (function () {

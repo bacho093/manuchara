@@ -193,6 +193,10 @@ html {
     padding: 5px;
     margin-bottom: 5px;
   }
+  .carList li:first-child span {
+    color: #EF6C00;
+    font-weight: bold;
+  }
   .carList li {
     margin: 5px 0;
     padding: 7px 0;
@@ -324,8 +328,25 @@ html {
   background: none;
   border: none;
   outline: none;
-  color: #a75c40;
+  color: #a74340;
   font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.removecar {
+  float: right;
+  margin-right: 10px;
+  background: none;
+  border: none;
+  outline: none;
+  color: #a74040;
+  font-size: 15px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.remove-addr:hover,
+.removecar:hover {
+  color: #641010;
 }
   .error {
     color: rgb(165, 14, 14);
@@ -345,4 +366,19 @@ html {
   margin: 5px 0;
   padding: 3px;
   text-transform: uppercase;
+}
+#carsform input::placeholder {
+  color: #000;
+}
+#carsform input {
+  text-transform: uppercase;
+}
+.addcar {
+  float: right;
+  outline: none;
+  border: none;
+  background: none;
+  color: #E91E63;
+  cursor: pointer;
+  margin-top: 5px;
 }

@@ -47,11 +47,36 @@ main div h2 {
   font-weight: bold;
   letter-spacing: 3px;
 }
+
+@media screen and (max-width: 720px) {
+  body {
+    background-image: url('../images/background.jpg');
+    background-position: center;
+    background-size: cover;
+  }
+  .text-info {
+    padding-top: 5vh;
+  }
+  main {
+    flex-direction: column;
+  }
+  main a {
+    width: 93%;
+    margin: 0 auto 2vh auto;
+  }
+}
+
+@media screen and (max-width: 450px)
+{
+  main a{
+    padding: 70px 0;
+  }
+}
+
 .pass {
   display: flex;
   flex-direction: column;
 }
-
 
 .social-icon {
   text-align: center;
@@ -82,3 +107,9 @@ main div h2 {
   color: rgba(219, 41, 41, 0.842);
 }
 
+@media screen and (max-width: 720px) {
+  .social-icon {
+    margin-top: 5vh!important;
+    margin-bottom: 5vh;
+  }
+}

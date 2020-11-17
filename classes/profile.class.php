@@ -214,7 +214,7 @@ class Profile extends Dbh {
 
     function carinfo() {
         include "languages/config.php";
-        if(isset($_POST['updatecars']))
+        if(isset($_POST['addcar']))
         {
             $sql = "SELECT * FROM cars";
             $stmt = $this->connect()->query($sql);
@@ -226,19 +226,62 @@ class Profile extends Dbh {
             }
         
         }
-        if(!isset($_POST['updatecars'])) {
+        if(!isset($_POST['addcar']) && !isset($_POST['updatecars'])) {
             $Sessid = $_SESSION['id'];
-            $sql = "SELECT car, model FROM user_car WHERE user_id='$Sessid'";
+            $sql = "SELECT car, model, color, vehicle_num FROM user_car WHERE user_id='$Sessid'";
+            $stmt = $this->connect()->query($sql);
+
+            while($row = $stmt->fetch())
+            {
+                $manufacturer = $row['car'];
+                $model = $row['model'];
+                $color = $row['color'];
+                $vehiclenum = $row['vehicle_num'];
+
+                echo "<ul class='box-list carList'>
+                        <li class='car-li'>".$land['manufacturer'].": <span>$manufacturer</span></li>
+                        <li class='car-li'>".$land['model'].": <span>$model</span></li>
+                        <li class='car-li'>". $land['color'] .": <span>$color</span></li>
+                        <li class='car-li'>".$land['CarNumber'].": <span>$vehiclenum</span></li>
+                      </ul>";
+            }
+        }
+
+        if(isset($_POST['updatecars']))
+        {
+            $Sessid = $_SESSION['id'];
+            $sql = "SELECT id, car, model, color, vehicle_num FROM user_car WHERE user_id='$Sessid'";
             $stmt = $this->connect()->query($sql);
 
             while($row = $stmt->fetch())
             {   
+                $id = $row['id'];
                 $manufacturer = $row['car'];
                 $model = $row['model'];
+                $color = $row['color'];
+                $vehiclenum = $row['vehicle_num'];
 
-                echo "<li class='car-li'>".$land['manufacturer'].": <span>$manufacturer</span></li>
-                        <li class='car-li'>".$land['model'].": <span>$model</span></li>";
+                echo "<ul class='box-list carList'>
+                        <form action='' method='post'>
+                            <input type='hidden' name='hiddencarid' value='$id'>
+                            <button type='submit' class='removecar' name='removecar'><span><i class='fas fa-trash-alt'></i></span></button>
+                        
+                        <li class='car-li'>".$land['manufacturer'].": <span>$manufacturer</span></li>
+                        <li class='car-li'>".$land['model'].": <span>$model</span></li>
+                        <li class='car-li'>". $land['color'] .": <span>$color</span></li>
+                        <li class='car-li'>".$land['CarNumber'].": <span>$vehiclenum</span></li>
+                        </form>
+                      </ul>";
             }
+        }
+    }
+
+    function remove_user_car() {
+        if(isset($_POST['removecar']))
+        {
+            $id = $_POST['hiddencarid'];
+            $sql = "DELETE FROM user_car WHERE id=$id";
+            $stmt = $this->connect()->query($sql);
         }
     }
 
@@ -256,23 +299,54 @@ class Profile extends Dbh {
         }
     }
 
+    function colorinfo() {
+        include "languages/config.php";
+        if(isset($_POST['addcar'])) {
+            if($_SESSION['lang'] == 'ge' || !isset($_SESSION['lang']))
+            {
+                $sql = "SELECT color_ge FROM colors";
+                $stmt = $this->connect()->query($sql);
+
+                while ($row = $stmt->fetch())
+                {
+                    $color = $row['color_ge'];
+                    echo "<option value='$color'>$color</option>";
+                }
+            }
+            else {
+                $sql = "SELECT color_en FROM colors";
+                $stmt = $this->connect()->query($sql);
+
+                while ($row = $stmt->fetch())
+                {
+                    $color = $row['color_en'];
+                    echo "<option value='$color'>$color</option>";
+                }
+            }
+        }
+    }
+
     function insertcarinfo() {
         if(isset($_POST['insertcarinfo']))
         {
             $selectcar = htmlspecialchars($_POST['selectcar']);
             $selectmodel = htmlspecialchars($_POST['selectmodel']);
-            if(empty($selectcar) || empty($selectmodel))
+            $selectcolor = htmlspecialchars($_POST['selectcolor']);
+            $selectnumber = htmlspecialchars($_POST['vehiclenum']);
+            if(empty($selectcar) || empty($selectmodel) || empty($selectcolor) || empty($selectnumber))
             {
                 $carErr = "Fields can not be empty!";
             }
             else {
-                $sql = "INSERT INTO user_car (user_id, car, model) VALUE (?,?,?)";
+                $sql = "INSERT INTO user_car (user_id, car, model, color, vehicle_num) VALUE (?,?,?,?,?)";
                 $stmt = $this->connect()->prepare($sql);
 
                 $stmt->execute([
                     $user_id = $_SESSION['id'],
                     $selectcar = htmlspecialchars($_POST['selectcar']),
-                    $selectmodel = htmlspecialchars($_POST['selectmodel'])
+                    $selectmodel = htmlspecialchars($_POST['selectmodel']),
+                    $selectcolor = htmlspecialchars($_POST['selectcolor']),
+                    $selectnumber = htmlspecialchars($_POST['vehiclenum'])
                 ]);
             }
         }

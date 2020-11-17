@@ -8,6 +8,7 @@
     $userprofile->updateselectcaraddrinfo();
     $userprofile->deletecaraddrinfo();
     $userprofile->insertcarinfo();
+    $userprofile->remove_user_car();
 
     if(isset($_POST['updateproinfo'])) {
     $Updatevalidate = new Updatevalidate($_POST);
@@ -177,9 +178,9 @@
                 </span>
             </div>
 
-            <ul class='box-list carList'>
+            
 
-            <?php if(isset($_POST['updatecars'])) :?>
+            <?php if(isset($_POST['addcar'])) :?>
                 <form id='carsform' action="" method="post">
                     <select name="selectcar" id='selectcar'>
                         <option value=""><?php echo $land['manufacturer']; ?></option>
@@ -195,6 +196,14 @@
                             ?>
                             
                     </select>
+                    <select name="selectcolor" id='selectcolor'>
+                        <option value=""><?php echo $land['color']; ?></option>
+                            <?php
+                                $userprofile->colorinfo();
+                            ?>
+                            
+                    </select>
+                        <input type="text" name="vehiclenum" placeholder='<?php echo $land['vehicleNum']; ?>'>
                 <?php
                     echo "<form method='POST' action=''>
                             <button type='submit' class='editbtn' name='insertcarinfo'>".$land['edit']."
@@ -205,15 +214,16 @@
 
             
 
-            <?php if(!isset($_POST['updatecars'])) : ?>
+            <?php if(!isset($_POST['addcar'])) : ?>
                 <?php
                     $userprofile->carinfo();
                 ?>
-                <li class='car-li'><?php echo $land['color']; ?>: <span>თეთრი</span></li>
-                <li class='car-li'><?php echo $land['CarNumber'];?>: <span>aa-111-aa</span></li>
+                <form action="" method="post">
+                    <button type="submit" name='addcar' class='addcar'><?php echo $land['addcar']; ?></button>
+                </form>
             <?php endif; ?>
 
-            </ul>
+            
 
         </div>
         <div class="right-box">

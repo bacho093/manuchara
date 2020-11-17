@@ -41,7 +41,7 @@
       <a href="www.facebook.com"><i class="fab fa-google-plus-g"></i></a>
     </div>
 
-
+<script src="js/navigation.js"></script>
       <!-- GetButton.io widget -->
 <script type="text/javascript">
     (function () {

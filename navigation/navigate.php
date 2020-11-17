@@ -14,6 +14,11 @@
 ?>
 <div class="navigations">
       <nav>
+      <div class="burger">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+      </div>
         <ul class="nav-list">
           <li><a href="index.php"><?php echo $land["home"]; ?></a></li>
           <li><a href="about.php"><?php echo $land['about']; ?></a></li>
@@ -55,15 +60,31 @@
               <li class='auth'><a href='#'>".$land['forgpass']."</a></li>
             </ul>
               <li>
+              <div class='form-wrapper'>
+              <button id='closeuarea'><i class='fas fa-times'></i></button>
+
                 <form class='login' method='post'>
                   <input type='email' name='email' placeholder='Email' autofocus>
                   <input type='password' name='password' placeholder='Password'>
                   <input type='submit' name='login-submit' value='".$land['signin']."'>
-              </form>
+                </form>
+              </div>
               </li>
-              <li><a href='register.php'>".$land['register']."</a></li>
+              <li class='registerbtn'><a href='register.php'>".$land['register']."</a></li>
           </ul>";
           }
         ?>
+        <div class="user-area">
+          <?php if(!isset($_SESSION['email'])) :?>
+
+            <p><?php echo $land['userarea'] ?> <i class="fas fa-layer-group"></i></p>
+
+          <?php endif; ?>
+          <?php if(isset($_SESSION['email'])) :?>
+
+            <p><a href="profile.php"><?php echo $land['userarea'] ?> <i class="fas fa-layer-group"></i></a></p>
+
+          <?php endif; ?>
+        </div>
       </nav>
     </div>

@@ -1,10 +1,13 @@
 .car-list {
-    display: flex;
+    /* display: flex;
     justify-content: space-around;
     margin: auto;
-    width: 75%;
+    width: 75%; */
+    padding: 0 30px;
 }
-
+.model-and-manufac div{
+    margin: 50px 0;
+}
 .divtitle {
     text-align: center;
     margin-bottom: 20px;
@@ -47,6 +50,9 @@
     background: none;
     color: #7e7e7e;
 }
+.newCar option {
+    text-transform: uppercase;
+}
 .car-list ul {
     border: 1px solid rgb(224, 222, 222);
     box-shadow: 1px 1px 10px rgba(0,0,0,0.3);
@@ -79,7 +85,7 @@
 }
 
 .models {
-    margin-bottom: 30px;
+    margin-bottom: -30px!important;
 }
 .manufacture {
     display: flex;
@@ -97,6 +103,34 @@
     letter-spacing: 1px;
     border-bottom: 1px solid #ccc;
     padding: 5px 0;
-    background: rgba(46, 139, 108, 0.589);
+    background: #8b662e96;
     border-radius: 3px;
+}
+.remove {
+    float: right;
+    color: #d13c31;
+    padding: 0 5px;
+}
+.colors {
+    margin-top: 35px;
+}
+.newcollor {
+    margin-bottom: 5px;
+}
+.pagination {
+    float: right;
+    padding: 10px 5px;
+}
+.pagination a {
+    color: rgba(36, 31, 14, 0.796);
+    margin: 0 2px;
+    width: 25px;
+    height: 25px;
+    background: rgb(236, 185, 19);
+    padding: 5px;
+    border-radius: 5px;
+    transition: color 0.3s ease;
+}
+.pagination a:hover {
+    color: rgb(26, 22, 11);
 }

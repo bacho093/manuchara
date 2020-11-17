@@ -4,7 +4,7 @@
     $cars = new Admincars();
     $cars->cars();
     $cars->insertmodellist();
-    
+    $cars->insertcolorlist();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,14 +61,33 @@
             
                 <div class="manufacture">
                     <h1>Enter a value</h1>
-                    <input type="text" name="model" class='newCar' autofocus>
+                    <input type="text" name="model" class='newCar'>
                     <input type="submit" name='addmodel' class='addnew' value="Add Model">
                     </form>
 
                     <ul class="carlist">
-                    <p class='lastadded'>Last Added...</p>
+                    <p class='lastadded'>LIST</p>
                         <?php
                             $cars->lastaddedmodel();
+                        ?>
+                    </ul>
+                </div>
+
+                <!-- ADD COLOR  -->
+
+                <div class="colors">
+                    <p class='divtitle'>ADD COLOR</p>
+                        <form action="" id='addinlistnewcar' method='POST'>
+                        <h1>Enter a value</h1>
+                        <input type="text" name="color_ge" class='newCar newcollor' placeholder='ქართულად'>
+                        <input type="text" name="color_en" class='newCar' placeholder='ENGLISH'>
+                        <input type="submit" name='addcolor' class='addnew' value="Add Color">
+                        </form>
+
+                        <ul class="carlist">
+                        <p class='lastadded'>LIST</p>
+                        <?php
+                            $cars->lastaddedcolor();
                         ?>
                     </ul>
                 </div>
