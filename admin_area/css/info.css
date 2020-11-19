@@ -1,0 +1,60 @@
+table {
+    width: 100%;
+}
+.goback {
+    background: #ffc107;
+}
+.goback a {
+    margin: 3px 100px;
+    float: right;
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(235, 230, 230);
+    padding: 2px 15px;
+    border-radius: 3px;
+    background: rgba(244, 165, 96, 0.849);
+    transition: 0.3s;
+}
+.goback a:hover {
+    background: rgba(244, 106, 96, 0.849);
+}
+table th,
+table td {
+    text-align: center;
+}
+table th {
+    background: rgb(40, 177, 131);
+    padding: 10px 0;
+    color: #fffefa;
+}
+.user-tr td {
+    padding: 10px 0;
+    color: rgba(0, 0, 0, 0.863);
+}
+.user-tr2 {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(57, 134, 185);
+    margin: 7px 0;
+}
+.user-tr2:nth-child(even) {
+    transform: scale(1.05);
+}
+.user-tr2 th {
+    text-align: left;
+    padding-left: 30px!important;
+}
+.user-tr2 td {
+    padding: 5px 0;
+    color: rgba(0, 0, 0, 0.863);
+}
+.user-tr2 td:nth-child(odd)
+{
+    background: rgb(231, 231, 231);
+}
+.user-td {
+    text-align: left;
+    padding-left: 50px!important;
+    border-bottom: 1px solid #ccc;
+    text-transform: uppercase;
+}

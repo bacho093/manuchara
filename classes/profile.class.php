@@ -346,7 +346,7 @@ class Profile extends Dbh {
                     $selectcar = htmlspecialchars($_POST['selectcar']),
                     $selectmodel = htmlspecialchars($_POST['selectmodel']),
                     $selectcolor = htmlspecialchars($_POST['selectcolor']),
-                    $selectnumber = htmlspecialchars($_POST['vehiclenum'])
+                    $selectnumber = $_POST['vehiclenum']
                 ]);
             }
         }

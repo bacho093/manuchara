@@ -1,7 +1,8 @@
 <?php
     session_start();
-    include "../includes/autoloader.inc.php";
+    include_once "includes/autoloader.inc.php";
 
+    $admin_userlist = new Adminusers();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,8 +12,10 @@
     <link rel="stylesheet" href="sidebar/sidebar.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/users.css">
     <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>მომხმარებლები</title>
 </head>
 <body>
@@ -20,17 +23,53 @@
     <?php
         include "sidebar/sidebar.php";
     ?>
-    <table>
-    <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
-        <th style="width: 40px; font-size: 13px">Delete Edit</th>
-    </tr>
-        <tr>
 
-        </tr>
+    <div class="table">
+        <div class="header-box">
+            <div class="addnew">
+                <a href="#">დაჯავშნე</a>
+            </div>
+            <div class="search-user">
+                <form action="" method="post">
+                    <input type="text" name="searchuser" id="searchuser" placeholder='By Email or Phone'>
+                </form>
+            </div>
+        </div>
+    <table class='userList'>
+    <tr class='trTitle'>
+        <th>სახელი</th>
+        <th>გვარი</th>
+        <th>მეილი</th>
+        <th>ტელეფონი</th>
+        <th>სტატუსი</th>
+        <th class='ed'>INFO - BLOCK</th>
+    </tr>
+            <?php
+                $admin_userlist->userList();
+                $admin_userlist->searchUser();
+            ?>
     </table>
+    </div>
 </section>
+
+<script>
+    $(document).ready(function() {
+        $('#searchuser').keyup(function() {
+            var searchuser = $(this).val();
+            if(searchuser !== '') {
+                $.ajax({
+                    url: '../classes/adminusers.class.php',
+                    method: 'POST',
+                    data: {
+                        result: searchuser
+                    },
+                    success: function(res) {
+                        $('.userList').html(res)
+                    }
+                });
+            }
+        });
+    });
+</script>
 </body>
 </html>

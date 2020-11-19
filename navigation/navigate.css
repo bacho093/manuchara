@@ -125,7 +125,7 @@
   .auth {
     position: absolute;
     left: 70%;
-    top: 45px;
+    top: 36px;
     z-index: 2;
   }
   .auth a {
