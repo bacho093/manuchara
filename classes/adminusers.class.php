@@ -92,7 +92,11 @@ class Adminusers extends Dbh {
                         </td>
                         </tr>";
             }
-            if(!isset($_GET['page']) || !($_GET['page'] == (ceil($count / 9) - 2)))
+            
+            if($count / 9 - 2 < 0) {
+                $r_num_page = '';
+            }
+            elseif(!isset($_GET['page']) || !($_GET['page'] == (ceil($count / 9) - 2)))
             {
                 $r_num_page = "<a href='?page=$page'><i class='fas fa-angle-double-right'></i></a>";
             }
